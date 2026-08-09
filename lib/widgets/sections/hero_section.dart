@@ -30,7 +30,7 @@ class HeroSection extends StatelessWidget {
     final textColumn = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _HeroCodeInfo(name: AppStrings.name, title: AppStrings.title),
+        const _HeroCodeInfo(name: AppStrings.name, title: AppStrings.title),
         const SizedBox(height: 32),
         SizedBox(
           width: isMobile ? double.infinity : 480,

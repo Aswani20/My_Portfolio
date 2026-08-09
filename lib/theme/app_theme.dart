@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio_app/utils/core/app_colors.dart';
 import 'package:portfolio_app/utils/core/app_strings.dart';
 
 class AppColorsScheme extends ThemeExtension<AppColorsScheme> {
@@ -57,23 +58,23 @@ class AppColorsScheme extends ThemeExtension<AppColorsScheme> {
 }
 
 const AppColorsScheme lightColors = AppColorsScheme(
-  background: Color(0xFFFFFFFF),
-  surface: Color(0xFFF7F7F9),
-  primary: Color(0xFF1A1A2E),
-  accent: Color(0xFF4361EE),
-  textPrimary: Color(0xFF1A1A2E),
-  textSecondary: Color(0xFF6B7280),
-  border: Color(0xFFE5E7EB),
+  background: AppColors.whiteColor,
+  surface:  AppColors.offWhiteColor,
+  primary:  AppColors.darkNavyColor,
+  accent:  AppColors.royalBlueColor,
+  textPrimary:  AppColors.darkNavyColor,
+  textSecondary:  AppColors.coolGrayColor,
+  border:  AppColors.lightGrayColor,
 );
 
 const AppColorsScheme darkColors = AppColorsScheme(
-  background: Color(0xFF0F0F1A),
-  surface: Color(0xFF1B1B2E),
-  primary: Color(0xFFF5F5F7),
-  accent: Color(0xFF6C8CFF),
-  textPrimary: Color(0xFFF5F5F7),
-  textSecondary: Color(0xFFA0A0B4),
-  border: Color(0xFF2E2E42),
+  background: AppColors.midnightNavyColor,
+  surface: AppColors.darkIndigoColor,
+  primary: AppColors.softWhiteColor,
+  accent: AppColors.periwinkleBlueColor,
+  textPrimary: AppColors.softWhiteColor,
+  textSecondary: AppColors.softGrayColor,
+  border: AppColors.darkPurpleColor,
 );
 
 extension AppColorsX on BuildContext {

@@ -1,5 +1,4 @@
 class AppStrings {
-
   //app_navbar.dart
   static const String hero = 'hero';
   static const String about = 'about';
@@ -26,23 +25,13 @@ class AppStrings {
   static const String download = 'download';
   static const String none = 'none';
 
-
   // app_theme.dart
   static const String fontFamily = 'Inter';
 
   // app.dart
   static const String myPortfolio = 'My Portfolio';
 
-
-
-
-
-
-
-
-
-
-
+  // hero_section
   static const String name = '\t Abdelrahman Youssef"';
   static const String title = '"  Software Developer  "';
   static const String tagline =
@@ -57,4 +46,7 @@ class AppStrings {
   static const String hello = '"Hello, I\'m ';
   static const String closingBrackets = '),';
   static const String closingSquareBrackets = '],';
+
+
+  // about_section
 }
