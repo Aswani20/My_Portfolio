@@ -20,7 +20,6 @@ class AboutSection extends StatelessWidget {
     {'icon': Icons.person_outline, 'label': 'Name', 'value': 'Abdelrahman Youssef'},
     {'icon': Icons.email_outlined, 'label': 'Email', 'value': 'abdelrahmanyoussef511997@gmail.com'},
     {'icon': Icons.phone_outlined, 'label': 'Phone', 'value': '+20 100 190 4592'},
-    {'icon': Icons.cake_outlined, 'label': 'Date of Birth', 'value': 'Jan 5, 1997'},
     {'icon': Icons.location_on_outlined, 'label': 'City', 'value': 'Giza, Egypt'},
     {'icon': Icons.military_tech_outlined, 'label': 'Military Status', 'value': 'Completed'},
   ];

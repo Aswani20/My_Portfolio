@@ -322,6 +322,7 @@ class _HeroPhotoState extends State<_HeroPhoto> with SingleTickerProviderStateMi
                 child: Image.asset(
                   widget.photoPath,
                   fit: BoxFit.cover,
+                  alignment: Alignment.topCenter,
                   errorBuilder: (context, error, stackTrace) {
                     return Icon(
                       Icons.person_outline,

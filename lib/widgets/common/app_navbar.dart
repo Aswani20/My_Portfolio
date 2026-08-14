@@ -27,7 +27,6 @@ class AppNavBar extends StatelessWidget implements PreferredSizeWidget {
     AppStrings.experience: AppStrings.experienceUpper,
     AppStrings.contact: AppStrings.contactUpper
   };
-
   static const String cvUrl = AppStrings.cv;
   static const String cvDownloadFilename = '${AppStrings.name}_CV.pdf';
 
