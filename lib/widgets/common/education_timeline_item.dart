@@ -101,9 +101,8 @@ class EducationTimelineItem extends StatelessWidget {
                       '${education.duration} · ${education.location}',
                       style: AppTextStyles.body.copyWith(fontSize: 13, color: colors.textSecondary),
                     ),
-                    const SizedBox(height: 14),
                     if (education.certificateUrl != null) ...[
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 14),
                       InkWell(
                         onTap: () => _openUrl(education.certificateUrl!),
                         borderRadius: BorderRadius.circular(8),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/utils/core/app_strings.dart';
 import 'theme/app_theme.dart';
 import 'widgets/common/app_navbar.dart';
+import 'widgets/common/scroll_reveal.dart';
 import 'widgets/sections/hero_section.dart';
 import 'widgets/sections/about_section.dart';
 import 'widgets/sections/skills_section.dart';
@@ -105,21 +106,39 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
         onLogoTap: _scrollToTop,
         onNavItemTap: _scrollToSection,
       ),
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          children: [
-            KeyedSubtree(
-              key: _sectionKeys[AppStrings.hero],
-              child: HeroSection(onScrollToSection: _scrollToSection),
-            ),
-            KeyedSubtree(key: _sectionKeys[AppStrings.about], child: const AboutSection()),
-            KeyedSubtree(key: _sectionKeys[AppStrings.skills], child: const SkillsSection()),
-            KeyedSubtree(key: _sectionKeys[AppStrings.projects], child: const ProjectsSection()),
-            KeyedSubtree(key: _sectionKeys[AppStrings.education], child: const EducationSection()),
-            KeyedSubtree(key: _sectionKeys[AppStrings.experience], child: const ExperienceSection()),
-            KeyedSubtree(key: _sectionKeys[AppStrings.contact], child: const ContactSection()),
-          ],
+      body: ScrollRevealScope(
+        scrollController: _scrollController,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Column(
+            children: [
+              ScrollReveal(
+                animateOnMount: true,
+                child: KeyedSubtree(
+                  key: _sectionKeys[AppStrings.hero],
+                  child: HeroSection(onScrollToSection: _scrollToSection),
+                ),
+              ),
+              ScrollReveal(
+                child: KeyedSubtree(key: _sectionKeys[AppStrings.about], child: const AboutSection()),
+              ),
+              ScrollReveal(
+                child: KeyedSubtree(key: _sectionKeys[AppStrings.skills], child: const SkillsSection()),
+              ),
+              ScrollReveal(
+                child: KeyedSubtree(key: _sectionKeys[AppStrings.projects], child: const ProjectsSection()),
+              ),
+              ScrollReveal(
+                child: KeyedSubtree(key: _sectionKeys[AppStrings.education], child: const EducationSection()),
+              ),
+              ScrollReveal(
+                child: KeyedSubtree(key: _sectionKeys[AppStrings.experience], child: const ExperienceSection()),
+              ),
+              ScrollReveal(
+                child: KeyedSubtree(key: _sectionKeys[AppStrings.contact], child: const ContactSection()),
+              ),
+            ],
+          ),
         ),
       ),
     );
