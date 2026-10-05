@@ -5,6 +5,7 @@ import 'package:portfolio_app/theme/app_theme.dart';
 import 'package:portfolio_app/utils/core/app_assets.dart';
 import 'package:portfolio_app/utils/core/app_strings.dart';
 import 'package:portfolio_app/widgets/common/cta_buttons.dart';
+import 'package:portfolio_app/widgets/common/scroll_reveal.dart';
 import 'package:portfolio_app/widgets/common/section_container.dart';
 
 class HeroSection extends StatelessWidget {
@@ -27,40 +28,57 @@ class HeroSection extends StatelessWidget {
     final useSideBySide = AppBreakpoints.isDesktop(width);
     final colors = context.colors;
 
+    final photo = ScrollReveal(
+      animateOnMount: true,
+      slideFrom: const Offset(0, 24),
+      scaleFrom: 0.94,
+      child: _HeroPhoto(photoPath: AppAssets.photoPath, size: isMobile ? 220 : 320),
+    );
+
     final textColumn = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _HeroCodeInfo(name: AppStrings.name, title: AppStrings.title),
+        const ScrollReveal(
+          animateOnMount: true,
+          delay: Duration(milliseconds: 120),
+          child: _HeroCodeInfo(name: AppStrings.name, title: AppStrings.title),
+        ),
         const SizedBox(height: 32),
-        SizedBox(
-          width: isMobile ? double.infinity : 480,
-          child: Text(
-            AppStrings.tagline,
-            textAlign: TextAlign.left,
-            style: AppTextStyles.bodyLarge.copyWith(color: colors.textSecondary),
+        ScrollReveal(
+          animateOnMount: true,
+          delay: const Duration(milliseconds: 240),
+          child: SizedBox(
+            width: isMobile ? double.infinity : 480,
+            child: Text(
+              AppStrings.tagline,
+              textAlign: TextAlign.left,
+              style: AppTextStyles.bodyLarge.copyWith(color: colors.textSecondary),
+            ),
           ),
         ),
         const SizedBox(height: 36),
-        Wrap(
-          alignment: WrapAlignment.start,
-          spacing: 16,
-          runSpacing: 16,
-          children: [
-            PrimaryButton(
-              label: AppStrings.viewWork,
-              icon: Icons.arrow_forward,
-              onPressed: _scrollToProjects,
-            ),
-            SecondaryButton(
-              label: AppStrings.getInTouch,
-              onPressed: _scrollToContact,
-            ),
-          ],
+        ScrollReveal(
+          animateOnMount: true,
+          delay: const Duration(milliseconds: 360),
+          child: Wrap(
+            alignment: WrapAlignment.start,
+            spacing: 16,
+            runSpacing: 16,
+            children: [
+              PrimaryButton(
+                label: AppStrings.viewWork,
+                icon: Icons.arrow_forward,
+                onPressed: _scrollToProjects,
+              ),
+              SecondaryButton(
+                label: AppStrings.getInTouch,
+                onPressed: _scrollToContact,
+              ),
+            ],
+          ),
         ),
       ],
     );
-
-    final photo = _HeroPhoto(photoPath: AppAssets.photoPath, size: isMobile ? 220 : 320);
 
     return SectionContainer(
       child: useSideBySide
@@ -323,6 +341,9 @@ class _HeroPhotoState extends State<_HeroPhoto> with SingleTickerProviderStateMi
                   widget.photoPath,
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
+                  gaplessPlayback: true,
+                  filterQuality: FilterQuality.medium,
+                  cacheWidth: (MediaQuery.devicePixelRatioOf(context) * widget.size).round(),
                   errorBuilder: (context, error, stackTrace) {
                     return Icon(
                       Icons.person_outline,

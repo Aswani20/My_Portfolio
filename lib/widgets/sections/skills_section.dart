@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/theme/app_theme.dart';
 import 'package:portfolio_app/utils/core/app_assets.dart';
 import 'package:portfolio_app/widgets/common/section_container.dart';
+import 'package:portfolio_app/widgets/common/scroll_reveal.dart';
 import 'package:portfolio_app/widgets/common/skill_chip.dart';
 
 class SkillsSection extends StatelessWidget {
@@ -62,37 +63,50 @@ class SkillsSection extends StatelessWidget {
         crossAxisAlignment:
         isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
-          Text(
-            heading,
-            textAlign: isMobile ? TextAlign.center : TextAlign.left,
-            style: AppTextStyles.h2.copyWith(color: colors.textPrimary),
+          ScrollReveal(
+            child: Text(
+              heading,
+              textAlign: isMobile ? TextAlign.center : TextAlign.left,
+              style: AppTextStyles.h2.copyWith(color: colors.textPrimary),
+            ),
           ),
           const SizedBox(height: 12),
-          Text(
-            subtitle,
-            textAlign: isMobile ? TextAlign.center : TextAlign.left,
-            style: AppTextStyles.body.copyWith(color: colors.textSecondary),
+          ScrollReveal(
+            delay: const Duration(milliseconds: 80),
+            child: Text(
+              subtitle,
+              textAlign: isMobile ? TextAlign.center : TextAlign.left,
+              style: AppTextStyles.body.copyWith(color: colors.textSecondary),
+            ),
           ),
           const SizedBox(height: 40),
-          for (final category in categories) ...[
-            Text(
-              category['title'] as String,
-              textAlign: isMobile ? TextAlign.center : TextAlign.left,
-              style: AppTextStyles.h3.copyWith(fontSize: 18, color: colors.accent),
+          for (var c = 0; c < categories.length; c++) ...[
+            ScrollReveal(
+              delay: ScrollReveal.stagger(c, stepMs: 70),
+              child: Text(
+                categories[c]['title'] as String,
+                textAlign: isMobile ? TextAlign.center : TextAlign.left,
+                style: AppTextStyles.h3.copyWith(fontSize: 18, color: colors.accent),
+              ),
             ),
             const SizedBox(height: 16),
             Wrap(
               alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
               spacing: 12,
               runSpacing: 12,
-              children: (category['skills'] as List<Map<String, dynamic>>)
-                  .map((s) => SkillChip(
-                assetPath: s['asset'] as String,
-                iconColor: s['color'] as Color,
-                label: s['label'] as String,
-                themeAdaptiveIcon: s['themeAdaptive'] as bool? ?? false,
-              ))
-                  .toList(),
+              children: [
+                for (var i = 0; i < (categories[c]['skills'] as List).length; i++)
+                  ScrollReveal(
+                    delay: ScrollReveal.stagger(c * 3 + i, stepMs: 60),
+                    scaleFrom: 0.92,
+                    child: SkillChip(
+                      assetPath: (categories[c]['skills'] as List<Map<String, dynamic>>)[i]['asset'] as String,
+                      iconColor: (categories[c]['skills'] as List<Map<String, dynamic>>)[i]['color'] as Color,
+                      label: (categories[c]['skills'] as List<Map<String, dynamic>>)[i]['label'] as String,
+                      themeAdaptiveIcon: (categories[c]['skills'] as List<Map<String, dynamic>>)[i]['themeAdaptive'] as bool? ?? false,
+                    ),
+                  ),
+              ],
             ),
             const SizedBox(height: 32),
           ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/theme/app_theme.dart';
 import 'package:portfolio_app/utils/core/app_strings.dart';
 import 'package:portfolio_app/widgets/common/personal_info_item.dart';
+import 'package:portfolio_app/widgets/common/scroll_reveal.dart';
 import 'package:portfolio_app/widgets/common/section_container.dart';
 
 
@@ -20,8 +21,7 @@ class AboutSection extends StatelessWidget {
     {'icon': Icons.person_outline, 'label': 'Name', 'value': 'Abdelrahman Youssef'},
     {'icon': Icons.email_outlined, 'label': 'Email', 'value': 'abdelrahmanyoussef511997@gmail.com'},
     {'icon': Icons.phone_outlined, 'label': 'Phone', 'value': '+20 100 190 4592'},
-    {'icon': Icons.location_on_outlined, 'label': 'City', 'value': 'Giza, Egypt'},
-    {'icon': Icons.military_tech_outlined, 'label': 'Military Status', 'value': 'Completed'},
+
   ];
   // ----------------------------------------------------------------
 
@@ -37,18 +37,23 @@ class AboutSection extends StatelessWidget {
         crossAxisAlignment:
         isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
-          Text(
-            heading,
-            textAlign: isMobile ? TextAlign.center : TextAlign.left,
-            style: AppTextStyles.h2.copyWith(color: colors.textPrimary),
+          ScrollReveal(
+            child: Text(
+              heading,
+              textAlign: isMobile ? TextAlign.center : TextAlign.left,
+              style: AppTextStyles.h2.copyWith(color: colors.textPrimary),
+            ),
           ),
           const SizedBox(height: 20),
-          SizedBox(
-            width: isMobile ? double.infinity : 700,
-            child: Text(
-              bio,
-              textAlign: isMobile ? TextAlign.center : TextAlign.left,
-              style: AppTextStyles.body.copyWith(color: colors.textSecondary),
+          ScrollReveal(
+            delay: const Duration(milliseconds: 80),
+            child: SizedBox(
+              width: isMobile ? double.infinity : 700,
+              child: Text(
+                bio,
+                textAlign: isMobile ? TextAlign.center : TextAlign.left,
+                style: AppTextStyles.body.copyWith(color: colors.textSecondary),
+              ),
             ),
           ),
           const SizedBox(height: 36),
@@ -56,13 +61,18 @@ class AboutSection extends StatelessWidget {
             alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
             spacing: 16,
             runSpacing: 16,
-            children: personalInfo
-                .map((info) => PersonalInfoItem(
-              icon: info['icon'] as IconData,
-              label: info['label'] as String,
-              value: info['value'] as String,
-            ))
-                .toList(),
+            children: [
+              for (var i = 0; i < personalInfo.length; i++)
+                ScrollReveal(
+                  delay: ScrollReveal.stagger(i, stepMs: 90),
+                  scaleFrom: 0.96,
+                  child: PersonalInfoItem(
+                    icon: personalInfo[i]['icon'] as IconData,
+                    label: personalInfo[i]['label'] as String,
+                    value: personalInfo[i]['value'] as String,
+                  ),
+                ),
+            ],
           ),
         ],
       ),

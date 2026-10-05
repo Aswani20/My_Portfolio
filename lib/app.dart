@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_app/utils/core/app_strings.dart';
+import 'package:portfolio_app/utils/services/image_precache.dart';
 import 'theme/app_theme.dart';
 import 'widgets/common/app_navbar.dart';
 import 'widgets/common/scroll_reveal.dart';
@@ -60,6 +61,7 @@ class PortfolioHomePage extends StatefulWidget {
 
 class _PortfolioHomePageState extends State<PortfolioHomePage> {
   final ScrollController _scrollController = ScrollController();
+  bool _didPrecacheImages = false;
 
   final Map<String, GlobalKey> _sectionKeys = {
     AppStrings.hero: GlobalKey(),
@@ -91,6 +93,14 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_didPrecacheImages) return;
+    _didPrecacheImages = true;
+    ImagePrecache.warmUp(context);
+  }
+
+  @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
@@ -112,31 +122,16 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
           controller: _scrollController,
           child: Column(
             children: [
-              ScrollReveal(
-                animateOnMount: true,
-                child: KeyedSubtree(
-                  key: _sectionKeys[AppStrings.hero],
-                  child: HeroSection(onScrollToSection: _scrollToSection),
-                ),
+              KeyedSubtree(
+                key: _sectionKeys[AppStrings.hero],
+                child: HeroSection(onScrollToSection: _scrollToSection),
               ),
-              ScrollReveal(
-                child: KeyedSubtree(key: _sectionKeys[AppStrings.about], child: const AboutSection()),
-              ),
-              ScrollReveal(
-                child: KeyedSubtree(key: _sectionKeys[AppStrings.skills], child: const SkillsSection()),
-              ),
-              ScrollReveal(
-                child: KeyedSubtree(key: _sectionKeys[AppStrings.projects], child: const ProjectsSection()),
-              ),
-              ScrollReveal(
-                child: KeyedSubtree(key: _sectionKeys[AppStrings.education], child: const EducationSection()),
-              ),
-              ScrollReveal(
-                child: KeyedSubtree(key: _sectionKeys[AppStrings.experience], child: const ExperienceSection()),
-              ),
-              ScrollReveal(
-                child: KeyedSubtree(key: _sectionKeys[AppStrings.contact], child: const ContactSection()),
-              ),
+              KeyedSubtree(key: _sectionKeys[AppStrings.about], child: const AboutSection()),
+              KeyedSubtree(key: _sectionKeys[AppStrings.skills], child: const SkillsSection()),
+              KeyedSubtree(key: _sectionKeys[AppStrings.projects], child: const ProjectsSection()),
+              KeyedSubtree(key: _sectionKeys[AppStrings.education], child: const EducationSection()),
+              KeyedSubtree(key: _sectionKeys[AppStrings.experience], child: const ExperienceSection()),
+              KeyedSubtree(key: _sectionKeys[AppStrings.contact], child: const ContactSection()),
             ],
           ),
         ),

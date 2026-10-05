@@ -13,7 +13,7 @@ class ProjectCard extends StatelessWidget {
 
   const ProjectCard({super.key, required this.project, this.width = 340});
 
-  static const double _contentHeight = 252;
+  static const double _contentHeight = 270;
 
   Future<void> _openUrl(String url) async {
     final uri = Uri.tryParse(url);
@@ -274,6 +274,9 @@ class _ProjectImage extends StatelessWidget {
       fit: BoxFit.cover,
       width: double.infinity,
       height: double.infinity,
+      gaplessPlayback: true,
+      filterQuality: FilterQuality.medium,
+      cacheWidth: (MediaQuery.devicePixelRatioOf(context) * 480).round(),
       errorBuilder: (context, error, stack) => Container(
         color: colors.border.withValues(alpha: 0.4),
         child: Icon(Icons.image_outlined, size: 40, color: colors.textSecondary),

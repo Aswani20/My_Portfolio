@@ -24,8 +24,8 @@ class SocialIconButton extends StatelessWidget {
         onTap: onTap,
         customBorder: const CircleBorder(),
         child: Container(
-          width: 46,
-          height: 46,
+          width: 60,
+          height: 60,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             shape: BoxShape.circle,

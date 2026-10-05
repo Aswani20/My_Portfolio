@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/models/experience.dart';
 import 'package:portfolio_app/theme/app_theme.dart';
 import 'package:portfolio_app/widgets/common/section_container.dart';
+import 'package:portfolio_app/widgets/common/scroll_reveal.dart';
 import 'package:portfolio_app/widgets/common/timeline_item.dart';
 
 
@@ -63,22 +64,31 @@ class ExperienceSection extends StatelessWidget {
         crossAxisAlignment:
         isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
-          Text(
-            heading,
-            textAlign: isMobile ? TextAlign.center : TextAlign.left,
-            style: AppTextStyles.h2.copyWith(color: colors.textPrimary),
+          ScrollReveal(
+            child: Text(
+              heading,
+              textAlign: isMobile ? TextAlign.center : TextAlign.left,
+              style: AppTextStyles.h2.copyWith(color: colors.textPrimary),
+            ),
           ),
           const SizedBox(height: 12),
-          Text(
-            subtitle,
-            textAlign: isMobile ? TextAlign.center : TextAlign.left,
-            style: AppTextStyles.body.copyWith(color: colors.textSecondary),
+          ScrollReveal(
+            delay: const Duration(milliseconds: 80),
+            child: Text(
+              subtitle,
+              textAlign: isMobile ? TextAlign.center : TextAlign.left,
+              style: AppTextStyles.body.copyWith(color: colors.textSecondary),
+            ),
           ),
           const SizedBox(height: 40),
           for (int i = 0; i < experiences.length; i++)
-            TimelineItem(
-              experience: experiences[i],
-              isLast: i == experiences.length - 1,
+            ScrollReveal(
+              delay: ScrollReveal.stagger(i, stepMs: 100),
+              slideFrom: const Offset(-18, 18),
+              child: TimelineItem(
+                experience: experiences[i],
+                isLast: i == experiences.length - 1,
+              ),
             ),
         ],
       ),

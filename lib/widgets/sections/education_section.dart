@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio_app/models/education.dart';
 import 'package:portfolio_app/theme/app_theme.dart';
 import 'package:portfolio_app/widgets/common/education_timeline_item.dart';
+import 'package:portfolio_app/widgets/common/scroll_reveal.dart';
 import 'package:portfolio_app/widgets/common/section_container.dart';
 
 class EducationSection extends StatelessWidget {
@@ -59,22 +60,31 @@ class EducationSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
         children: [
-          Text(
-            heading,
-            textAlign: isMobile ? TextAlign.center : TextAlign.left,
-            style: AppTextStyles.h2.copyWith(color: colors.textPrimary),
+          ScrollReveal(
+            child: Text(
+              heading,
+              textAlign: isMobile ? TextAlign.center : TextAlign.left,
+              style: AppTextStyles.h2.copyWith(color: colors.textPrimary),
+            ),
           ),
           const SizedBox(height: 12),
-          Text(
-            subtitle,
-            textAlign: isMobile ? TextAlign.center : TextAlign.left,
-            style: AppTextStyles.body.copyWith(color: colors.textSecondary),
+          ScrollReveal(
+            delay: const Duration(milliseconds: 80),
+            child: Text(
+              subtitle,
+              textAlign: isMobile ? TextAlign.center : TextAlign.left,
+              style: AppTextStyles.body.copyWith(color: colors.textSecondary),
+            ),
           ),
           const SizedBox(height: 40),
           for (var i = 0; i < educationList.length; i++)
-            EducationTimelineItem(
-              education: educationList[i],
-              isLast: i == educationList.length - 1,
+            ScrollReveal(
+              delay: ScrollReveal.stagger(i, stepMs: 100),
+              slideFrom: const Offset(-18, 18),
+              child: EducationTimelineItem(
+                education: educationList[i],
+                isLast: i == educationList.length - 1,
+              ),
             ),
         ],
       ),
