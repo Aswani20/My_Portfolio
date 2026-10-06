@@ -7,6 +7,7 @@ import 'package:portfolio_app/utils/core/app_strings.dart';
 import 'package:portfolio_app/widgets/common/cta_buttons.dart';
 import 'package:portfolio_app/widgets/common/scroll_reveal.dart';
 import 'package:portfolio_app/widgets/common/section_container.dart';
+import 'package:portfolio_app/widgets/common/spider_web_background.dart';
 
 class HeroSection extends StatelessWidget {
   final void Function(String sectionId)? onScrollToSection;
@@ -80,18 +81,25 @@ class HeroSection extends StatelessWidget {
       ],
     );
 
-    return SectionContainer(
-      child: useSideBySide
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(child: textColumn),
-                const SizedBox(width: 48),
-                photo,
-              ],
-            )
-          : Column(children: [photo, const SizedBox(height: 40), textColumn]),
+    return Stack(
+      children: [
+        const Positioned.fill(
+          child: IgnorePointer(child: SpiderWebBackground()),
+        ),
+        SectionContainer(
+          child: useSideBySide
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(child: textColumn),
+                    const SizedBox(width: 48),
+                    photo,
+                  ],
+                )
+              : Column(children: [photo, const SizedBox(height: 40), textColumn]),
+        ),
+      ],
     );
   }
 }
