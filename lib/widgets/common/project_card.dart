@@ -13,7 +13,7 @@ class ProjectCard extends StatelessWidget {
 
   const ProjectCard({super.key, required this.project, this.width = 340});
 
-  static const double _contentHeight = 270;
+  static const double _contentHeight = 271;
 
   Future<void> _openUrl(String url) async {
     final uri = Uri.tryParse(url);
