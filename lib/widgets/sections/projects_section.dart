@@ -165,6 +165,7 @@ class ProjectsSection extends StatelessWidget {
                 children: [
                   for (var i = 0; i < projects.length; i++)
                     ScrollReveal(
+
                       delay: ScrollReveal.stagger(i, stepMs: 90),
                       scaleFrom: 0.96,
                       slideFrom: const Offset(0, 32),

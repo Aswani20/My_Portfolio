@@ -15,7 +15,7 @@ class ExperienceSection extends StatelessWidget {
   // ---- Placeholder content — swap these for your real work history ----
   static const List<Experience> experiences = [
     Experience(
-      role: 'Software Developer',
+      role: 'Junior Software Developer',
       company: 'Bibliotheca Alexandrina',
       duration: 'Jan 2024 — Present',
       location: 'Alexandria, Egypt',
@@ -29,12 +29,25 @@ class ExperienceSection extends StatelessWidget {
     Experience(
       role: 'Senior Flutter Mentor',
       company: 'Route Academy',
-      duration: 'May 2024 – Present',
+      duration: 'Oct 2025 – Present',
       location: 'Alexandria, Egypt',
       isCurrent: true,
       highlights: [
         'My responsibility is to guide students in route by teaching flutter.',
         'mark and review their code and send them feedback to enhance their code and teach them extra and advanced topics.',
+      ],
+      milestones: [
+        ExperienceMilestone(
+          title: 'Flutter Mentor',
+          duration: 'May 2024 - Oct 2025',
+          type: 'Promotion',
+          highlights: [
+            'reinforce the official curriculum through'
+          'weekly recap/practical workshops, provide timely, high-quality feedback on assignments, run'
+          'office hours, and partner closely with instructors to detect learner risks early and resolve'
+          'them quickly. You are technically strong and student-centric.',
+          ],
+        ),
       ],
     ),
     Experience(
