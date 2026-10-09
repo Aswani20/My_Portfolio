@@ -40,7 +40,7 @@ class ExperienceSection extends StatelessWidget {
         ExperienceMilestone(
           title: 'Flutter Mentor',
           duration: 'May 2024 - Oct 2025',
-          type: 'Promotion',
+          type: 'Joined',
           highlights: [
             'reinforce the official curriculum through'
           'weekly recap/practical workshops, provide timely, high-quality feedback on assignments, run'
