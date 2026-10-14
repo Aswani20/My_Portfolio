@@ -62,3 +62,13 @@ The output goes to `build/web/` — deploy that folder to any static host
 - [ ] Experience section
 - [ ] Contact section
 - [ ] Responsive polish
+
+## Static articles
+
+Articles live in `assets/content/articles.json`, bundled with the website. The initial list is empty, so the section and navigation link are hidden. There is no Dashboard connection or Firebase integration.
+
+Write articles in the separate Portfolio Admin Dashboard → Articles, enable **Include in website export**, then **Copy website JSON**. Paste the whole document into `assets/content/articles.json`, save it and rebuild this website with `flutter build web --release`. Deploy the new `build/web` using your normal hosting process. Drafts are excluded; deleting articles in the Dashboard requires exporting/rebuilding again to change the website.
+
+The static format is `{"schemaVersion":1,"articles":[]}`. Each article uses string fields `id`, `title`, `summary`, `body`, `publishedOn` (valid YYYY-MM-DD). Body is plain text; blank lines separate paragraphs. The homepage shows the three newest articles by publication date. See more opens all articles, newest first. Equal dates retain JSON array order. Read article still opens the same full-text reading page. No placeholder articles are shipped. Malformed article assets are logged and hidden without breaking the rest of the portfolio.
+
+Tests: `flutter test`. Full writing, export and backup instructions are in the sibling Dashboard's `docs/ARTICLES.md`.

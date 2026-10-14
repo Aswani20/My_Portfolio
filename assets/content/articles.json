@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "articles": [
+    {
+      "id": "sample-flutter-architecture",
+      "title": "Organizing a Flutter Project",
+      "summary": "A practical introduction to separating UI, models, and data access.",
+      "body": "A clear project structure makes a Flutter application easier to maintain.\n\nStart by separating presentation widgets from your data models. Widgets should display information and handle interactions, while models describe the content your application works with.\n\nUse repositories to keep storage details outside your screens. This allows you to begin with local JSON files and introduce a remote backend later without rewriting every widget.\n\nKeep the structure simple. Add new layers only when they solve a real problem.",
+      "publishedOn": "2026-10-13"
+    },
+    {
+      "id": "sample-architecture",
+      "title": "Organizing a Flutter Project",
+      "summary": "A practical introduction to separating UI, models, and data access.",
+      "body": "A clear project structure makes a Flutter application easier to maintain.\n\nStart by separating presentation widgets from your data models. Widgets should display information and handle interactions, while models describe the content your application works with.\n\nUse repositories to keep storage details outside your screens. This allows you to begin with local JSON files and introduce a remote backend later without rewriting every widget.\n\nKeep the structure simple. Add new layers only when they solve a real problem.",
+      "publishedOn": "2026-10-13"
+    },
+    {
+      "id": "sample-responsive-design",
+      "title": "Building Responsive Flutter Layouts",
+      "summary": "How to make one interface comfortable on both mobile and desktop screens.",
+      "body": "Responsive design starts with the space available to a widget.\n\nUse LayoutBuilder when a component needs to adapt to its parent constraints. A collection of cards might use one column on a phone, two on a tablet, and three on a wide desktop screen.\n\nAvoid relying on fixed widths for text-heavy content. Long titles, larger text settings, and translated labels can all change the space your interface needs.\n\nTest narrow screens early. Navigation, dialogs, and forms often reveal layout problems before the main content does.",
+      "publishedOn": "2026-10-12"
+    },
+    {
+      "id": "sample-local-storage",
+      "title": "Making Local Data Storage More Reliable",
+      "summary": "Validation, backups, and a few useful tests for applications that save data locally.",
+      "body": "Local storage deserves the same care as a remote database.\n\nValidate incoming data before saving it. Check required fields, reject duplicate IDs, and make sure references point to existing records.\n\nBefore replacing a complete dataset, create a backup and ask for confirmation. A failed operation should leave the previous content usable.\n\nFinally, test persistence by closing and reopening the application. A successful save message is useful, but reading the correct data after a restart is stronger evidence.",
+      "publishedOn": "2026-10-11"
+    }
+  ]
+}

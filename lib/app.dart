@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'models/article.dart';
+import 'widgets/sections/articles_section.dart';
 import 'package:portfolio_app/utils/core/app_strings.dart';
 import 'package:portfolio_app/utils/services/image_precache.dart';
 import 'theme/app_theme.dart';
@@ -48,11 +51,13 @@ class _PortfolioAppState extends State<PortfolioApp> {
 class PortfolioHomePage extends StatefulWidget {
   final bool isDarkMode;
   final VoidCallback onToggleTheme;
+  final List<Article>? articles;
 
   const PortfolioHomePage({
     super.key,
     required this.isDarkMode,
     required this.onToggleTheme,
+    this.articles,
   });
 
   @override
@@ -62,6 +67,27 @@ class PortfolioHomePage extends StatefulWidget {
 class _PortfolioHomePageState extends State<PortfolioHomePage> {
   final ScrollController _scrollController = ScrollController();
   bool _didPrecacheImages = false;
+  List<Article> _articles = const [];
+  @override
+  void initState() {
+    super.initState();
+    if (widget.articles != null) {
+      _articles = widget.articles!;
+    } else {
+      _loadArticles();
+    }
+  }
+
+  Future<void> _loadArticles() async {
+    try {
+      final articles = parseArticles(
+          await rootBundle.loadString('assets/content/articles.json'));
+      if (mounted) setState(() => _articles = articles);
+    } catch (error) {
+      // Invalid static content must not break the rest of the portfolio.
+      debugPrint('Articles could not be loaded: $error');
+    }
+  }
 
   final Map<String, GlobalKey> _sectionKeys = {
     AppStrings.hero: GlobalKey(),
@@ -71,6 +97,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
     AppStrings.education: GlobalKey(),
     AppStrings.experience: GlobalKey(),
     AppStrings.contact: GlobalKey(),
+    'articles': GlobalKey(),
   };
 
   void _scrollToSection(String id) {
@@ -115,6 +142,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
         onToggleTheme: widget.onToggleTheme,
         onLogoTap: _scrollToTop,
         onNavItemTap: _scrollToSection,
+        hasArticles: _articles.isNotEmpty,
       ),
       body: ScrollRevealScope(
         scrollController: _scrollController,
@@ -126,12 +154,28 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
                 key: _sectionKeys[AppStrings.hero],
                 child: HeroSection(onScrollToSection: _scrollToSection),
               ),
-              KeyedSubtree(key: _sectionKeys[AppStrings.about], child: const AboutSection()),
-              KeyedSubtree(key: _sectionKeys[AppStrings.skills], child: const SkillsSection()),
-              KeyedSubtree(key: _sectionKeys[AppStrings.projects], child: const ProjectsSection()),
-              KeyedSubtree(key: _sectionKeys[AppStrings.education], child: const EducationSection()),
-              KeyedSubtree(key: _sectionKeys[AppStrings.experience], child: const ExperienceSection()),
-              KeyedSubtree(key: _sectionKeys[AppStrings.contact], child: const ContactSection()),
+              KeyedSubtree(
+                  key: _sectionKeys[AppStrings.about],
+                  child: const AboutSection()),
+              KeyedSubtree(
+                  key: _sectionKeys[AppStrings.skills],
+                  child: const SkillsSection()),
+              KeyedSubtree(
+                  key: _sectionKeys[AppStrings.projects],
+                  child: const ProjectsSection()),
+              if (_articles.isNotEmpty)
+                KeyedSubtree(
+                    key: _sectionKeys['articles'],
+                    child: ArticlesSection(articles: _articles)),
+              KeyedSubtree(
+                  key: _sectionKeys[AppStrings.education],
+                  child: const EducationSection()),
+              KeyedSubtree(
+                  key: _sectionKeys[AppStrings.experience],
+                  child: const ExperienceSection()),
+              KeyedSubtree(
+                  key: _sectionKeys[AppStrings.contact],
+                  child: const ContactSection()),
             ],
           ),
         ),
