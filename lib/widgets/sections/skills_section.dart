@@ -15,9 +15,13 @@ class SkillsSection extends StatelessWidget {
     {
       'title': 'Mobile Development',
       'skills': [
-        {'asset': AppAssets.iconFlutter, 'color': Color(0xFF4479A1), 'label': 'Flutter'},
         {'asset': AppAssets.iconDart, 'color': Color(0xFF4479A1), 'label': 'Dart'},
+        {'asset': AppAssets.iconFlutter, 'color': Color(0xFF4479A1), 'label': 'Flutter'},
+        {'asset': AppAssets.iconKotlin, 'color': Color(0xFF7F52FF), 'label': 'Kotlin'},
+        {'asset': AppAssets.iconAndroid, 'color': Color(0xFF3DDC84), 'label': 'Android'},
+        {'asset': AppAssets.iconJetpackCompose, 'color': Color(0xFF3DDC84), 'label': 'Jetpack compose'},
         {'asset': AppAssets.iconFirebase, 'color': Color(0xFFFFCA28), 'label': 'Firebase'},
+
       ],
     },
     {

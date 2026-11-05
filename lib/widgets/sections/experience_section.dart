@@ -27,7 +27,7 @@ class ExperienceSection extends StatelessWidget {
       ],
     ),
     Experience(
-      role: 'Senior Flutter Mentor',
+      role: 'Master Flutter Mentor',
       company: 'Route Academy',
       duration: 'Oct 2025 – Present',
       location: 'Alexandria, Egypt',
@@ -37,6 +37,17 @@ class ExperienceSection extends StatelessWidget {
         'mark and review their code and send them feedback to enhance their code and teach them extra and advanced topics.',
       ],
       milestones: [
+        ExperienceMilestone(
+          title: 'Senior Flutter Mentor',
+          duration: 'Oct 2025 - Oct 2026',
+          type: 'Promotion',
+          highlights: [
+            'reinforce the official curriculum through'
+                'weekly recap/practical workshops, provide timely, high-quality feedback on assignments, run'
+                'office hours, and partner closely with instructors to detect learner risks early and resolve'
+                'them quickly. You are technically strong and student-centric.',
+          ],
+        ),
         ExperienceMilestone(
           title: 'Flutter Mentor',
           duration: 'May 2024 - Oct 2025',

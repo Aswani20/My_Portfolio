@@ -45,6 +45,9 @@ class AppAssets {
   static const String iconWhatsapp = 'assets/icons/whatsapp.svg';
   static const String iconX = 'assets/icons/x.svg';
   static const String iconUnrealEngine = 'assets/icons/unreal_engine.svg';
+  static const String iconAndroid = 'assets/icons/android-icon.svg';
+  static const String iconKotlin = 'assets/icons/kotlin-icon.svg';
+  static const String iconJetpackCompose = 'assets/icons/jetpack-compose-logo.svg';
 
   // Hero Orbit Icons
   static const List<String> heroOrbitIcons = [
